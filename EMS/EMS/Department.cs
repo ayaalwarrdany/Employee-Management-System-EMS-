@@ -8,22 +8,32 @@ namespace EMS
 {
     internal class Department
     {
-
         public string Name { get; set; }
-        private List<Employee> employees;
-        public Department(string name)
+        public Employee DepartmentHead { get; set; }
+        public List<Employee> Employees { get; private set; }
+
+        public Department(string name, Employee departmentHead)
         {
-                Name = name;
-            employees = new List<Employee>();
-            
+            Name = name;
+            DepartmentHead = departmentHead;
+            Employees = new List<Employee>();
+            if (departmentHead != null)
+            {
+                Employees.Add(departmentHead);
+            }
         }
-        public void AddEmployee(Employee employee) 
+
+        public void AddEmployee(Employee employee)
         {
-        employees.Add(employee);
-        }    
-        public void RemoveEmployee(Employee employee) 
+            if (employee == null) throw new Exception("Employee is not Found");
+            Employees.Add(employee);
+            Console.WriteLine($"{employee.Name} is Added to {Name} Department");
+        }
+
+        public void RemoveEmployee(Employee employee)
         {
-        employees.Remove(employee);
+            Employees.Remove(employee);
+            Console.WriteLine($"{employee.Name} is removed from {Name} Department");
         }
     }
 }
