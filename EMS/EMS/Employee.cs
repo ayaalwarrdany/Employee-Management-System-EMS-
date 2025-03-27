@@ -17,7 +17,9 @@ namespace EMS
         public Department Department { get; private set; }
         public DateTime EmployeeDate { get; private set; }
         public bool IsTerminated { get; private set; }
-        public int PerformanceRating { get; private set; }
+    //    public int PerformanceRating { get; private set; }
+        private List<PerformanceReview> performanceReviews; 
+        public IReadOnlyList<PerformanceReview> PerformanceReviews => performanceReviews.AsReadOnly();
 
         public Employee(string name, int age, decimal salary, Department department  )
         {
@@ -27,12 +29,18 @@ namespace EMS
             Salary = salary;
             Department = department;
             EmployeeDate = DateTime.Now;
-            PerformanceRating = 0;
+            performanceReviews = new List<PerformanceReview>();
+
+            // PerformanceRating = 0;
             department.AddEmployee(this);
-
-
-
         }
+        public void AddPerformanceReview(PerformanceReview review)
+        {
+            performanceReviews.Add(review);
+        }
+
+      
+
         public void Terminate()
         {
             IsTerminated = true;
@@ -44,12 +52,14 @@ namespace EMS
             if (IsTerminated)
             {
                 Console.WriteLine($"Cannot promote terminated employee {Name}.");
-               
+
             }
 
             Salary += increaseAmount;
             Console.WriteLine($"Employee {Name} promoted with salary increase: {increaseAmount:F}.");
         }
+
+
         public void UpdatePerformanceRating(int rating)
         {
             if (rating < 1 || rating > 5)
@@ -58,7 +68,7 @@ namespace EMS
                 return;
             }
 
-            PerformanceRating = rating;
+            // PerformanceRating = rating;
             Console.WriteLine($"Performance rating for {Name} updated to {rating}.");
         }
 
