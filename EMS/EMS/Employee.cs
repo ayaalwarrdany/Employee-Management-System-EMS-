@@ -17,7 +17,6 @@ namespace EMS
         public Department Department { get; private set; }
         public DateTime EmployeeDate { get; private set; }
         public bool IsTerminated { get; private set; }
-    //    public int PerformanceRating { get; private set; }
         private List<PerformanceReview> performanceReviews; 
         public IReadOnlyList<PerformanceReview> PerformanceReviews => performanceReviews.AsReadOnly();
 
@@ -34,44 +33,41 @@ namespace EMS
             // PerformanceRating = 0;
             department.AddEmployee(this);
         }
-        public void AddPerformanceReview(PerformanceReview review)
+              public void Terminate()
         {
-            performanceReviews.Add(review);
-        }
+            if (IsTerminated)
+            {
+                Console.WriteLine($"Employee {Name} is terminated and cannot be transferred.");
+                return;
+            }
 
-      
-
-        public void Terminate()
-        {
             IsTerminated = true;
             Department.RemoveEmployee(this);
             Console.WriteLine($"Employee {Name} has been terminated.");
         }
-        public void Promote(string newTitle, decimal increaseAmount)
+        public void TransferDepartment(Department newDepartment)
         {
             if (IsTerminated)
             {
-                Console.WriteLine($"Cannot promote terminated employee {Name}.");
-
-            }
-
-            Salary += increaseAmount;
-            Console.WriteLine($"Employee {Name} promoted with salary increase: {increaseAmount:F}.");
-        }
-
-
-        public void UpdatePerformanceRating(int rating)
-        {
-            if (rating < 1 || rating > 5)
-            {
-                Console.WriteLine("Rating must be between 1 and 5.");
+                Console.WriteLine($"Employee {Name} is terminated and cannot be transferred.");
                 return;
-            }
 
-            // PerformanceRating = rating;
-            Console.WriteLine($"Performance rating for {Name} updated to {rating}.");
+            }
+            if(Department == newDepartment)
+            {
+                Console.WriteLine($"Employee {Name} is already in {newDepartment.Name}.");
+                return;
+
+            }
+            Department.RemoveEmployee(this);
+            newDepartment.AddEmployee(this);
+            Department = newDepartment;
+            Console.WriteLine($"Employee {Name} has been transferred to {Department.Name}.");
         }
+
 
 
     }
 }
+
+       
