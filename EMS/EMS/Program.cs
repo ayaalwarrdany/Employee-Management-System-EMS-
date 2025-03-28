@@ -79,11 +79,11 @@ namespace EMS
                 }
             }
 
-            decimal salary;
+            double salary;
             while (true)
             {
                 Console.Write("Enter Salary (must be positive): ");
-                if (!decimal.TryParse(Console.ReadLine(), out salary) || salary <= 0)
+                if (!double.TryParse(Console.ReadLine(), out salary) || salary <= 0)
                 {
                     Console.WriteLine("Invalid salary. Please enter a positive number.");
                 }

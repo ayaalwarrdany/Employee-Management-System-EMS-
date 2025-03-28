@@ -6,14 +6,23 @@ using System.Threading.Tasks;
 
 namespace EMS
 {
-   
+    public enum PerformanceRating
+    {
+        Poor = 1,       
+        Average = 2,    
+        Good = 3,        
+        Excellent = 4,  
+        Outstanding = 5  
+    }
+
+
     class PerformanceReview
     {
         public DateTime ReviewDate { get; private set; }
-        public double Rating { get; private set; }
+        public PerformanceRating Rating { get; private set; }
         public string ReviewerComments { get; private set; }
 
-        public PerformanceReview(double rating, string comments = "")
+        public PerformanceReview(PerformanceRating rating, string comments = "")
         {
            
              Rating = rating;

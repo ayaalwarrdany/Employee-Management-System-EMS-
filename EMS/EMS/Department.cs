@@ -17,10 +17,11 @@ namespace EMS
             Name = name;
             DepartmentHead = departmentHead;
             Employees = new List<Employee>();
-            if (departmentHead != null)
-            {
-                Employees.Add(departmentHead);
-            }
+            Employees.Add(departmentHead);
+            //if (departmentHead != null)
+            //{
+            //    Employees.Add(departmentHead);
+            //}
         }
 
         public void AddEmployee(Employee employee)
@@ -34,6 +35,10 @@ namespace EMS
         {
             Employees.Remove(employee);
             Console.WriteLine($"{employee.Name} is removed from {Name} Department");
+        }
+        public List<Employee> GetEmployees()
+        {
+            return Employees;
         }
     }
 }

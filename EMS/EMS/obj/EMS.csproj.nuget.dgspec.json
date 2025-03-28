@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\elmanahry\\OneDrive\\Desktop\\OOP_Project\\Employee-Management-System-EMS-\\EMS\\EMS\\EMS.csproj": {}
+    "C:\\Users\\elmanahry\\OneDrive\\Desktop\\OOP_Project\\Employee-Management-System-EMS-\\New folder\\Employee-Management-System-EMS-\\EMS\\EMS\\EMS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\elmanahry\\OneDrive\\Desktop\\OOP_Project\\Employee-Management-System-EMS-\\EMS\\EMS\\EMS.csproj": {
+    "C:\\Users\\elmanahry\\OneDrive\\Desktop\\OOP_Project\\Employee-Management-System-EMS-\\New folder\\Employee-Management-System-EMS-\\EMS\\EMS\\EMS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\OOP_Project\\Employee-Management-System-EMS-\\EMS\\EMS\\EMS.csproj",
+        "projectUniqueName": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\OOP_Project\\Employee-Management-System-EMS-\\New folder\\Employee-Management-System-EMS-\\EMS\\EMS\\EMS.csproj",
         "projectName": "EMS",
-        "projectPath": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\OOP_Project\\Employee-Management-System-EMS-\\EMS\\EMS\\EMS.csproj",
+        "projectPath": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\OOP_Project\\Employee-Management-System-EMS-\\New folder\\Employee-Management-System-EMS-\\EMS\\EMS\\EMS.csproj",
         "packagesPath": "C:\\Users\\elmanahry\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\OOP_Project\\Employee-Management-System-EMS-\\EMS\\EMS\\obj\\",
+        "outputPath": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\OOP_Project\\Employee-Management-System-EMS-\\New folder\\Employee-Management-System-EMS-\\EMS\\EMS\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
