@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 namespace EMS
 {
@@ -12,7 +13,7 @@ namespace EMS
 
         static void Main()
         {
-            
+
             departments.Add(new Department("IT", null));
             departments.Add(new Department("HR", null));
             departments.Add(new Department("Sales", null));
@@ -22,7 +23,9 @@ namespace EMS
                 Console.WriteLine("\n===== Employee Management System (EMS) =====");
                 Console.WriteLine("1. Add Employee");
                 Console.WriteLine("2. View Employees");
-                Console.WriteLine("3. Exit");
+                Console.WriteLine("3. TransferEmployee");
+                Console.WriteLine("4. TerminateEmployee");
+                Console.WriteLine("5. Exit");
                 Console.Write("Enter your choice: ");
 
                 string choice = Console.ReadLine();
@@ -37,6 +40,12 @@ namespace EMS
                         ViewEmployees();
                         break;
                     case "3":
+                        TransferEmployee();
+                        break;
+                    case "4":
+                        TerminateEmployee();
+                        break;
+                    case "5":
                         Console.WriteLine("Exiting... Thank you!");
                         return;
                     default:
@@ -44,97 +53,162 @@ namespace EMS
                         break;
                 }
             }
-        }
-
-        static void AddEmployee()
-        {
-            string name;
-            while (true)
+            #region Employee
+            //AddEmployee
+            static void AddEmployee()
             {
-                Console.Write("Enter Employee Name (letters only): ");
-                name = Console.ReadLine();
+                string name;
+                while (true)
+                {
+                    Console.Write("Enter Employee Name (letters only): ");
+                    name = Console.ReadLine();
 
-                if (!Regex.IsMatch(name, @"^[A-Za-z\s]+$"))
-                {
-                    Console.WriteLine("Invalid name. Please enter only letters.");
-                    
+                    if (!Regex.IsMatch(name, @"^[A-Za-z\s]+$"))
+                    {
+                        Console.WriteLine("Invalid name. Please enter only letters.");
+
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
-                else
+
+                int age;
+                while (true)
                 {
-                    break;
+                    Console.Write("Enter Age (18-65): ");
+                    if (!int.TryParse(Console.ReadLine(), out age) || age < 18 || age > 65)
+                    {
+                        Console.WriteLine("Invalid age. Please enter a number between 18 and 65.");
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                double salary;
+                while (true)
+                {
+                    Console.Write("Enter Salary (must be positive): ");
+                    if (!double.TryParse(Console.ReadLine(), out salary) || salary <= 0)
+                    {
+                        Console.WriteLine("Invalid salary. Please enter a positive number.");
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                Console.WriteLine("Choose Department:");
+                for (int i = 0; i < departments.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {departments[i].Name}");
+                }
+
+                int Choice;
+                while (true)
+                {
+                    Console.Write("Enter Department Number: ");
+                    if (!int.TryParse(Console.ReadLine(), out Choice) || Choice < 1 || Choice > departments.Count)
+                    {
+                        Console.WriteLine("Invalid department selection. Try again.");
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                Department selectedDepartment = departments[Choice - 1];
+                Employee newEmployee = new Employee(name, age, salary, selectedDepartment);
+                employees.Add(newEmployee);
+
+                Console.WriteLine($"Employee {name} added successfully.");
+            }
+
+            //ViewEmployee
+            static void ViewEmployees()
+            {
+                if (employees.Count == 0)
+                {
+                    Console.WriteLine("No employees available.");
+                    return;
+                }
+
+                Console.WriteLine("\n===== Employee List =====");
+                foreach (var emp in employees)
+                {
+                    Console.WriteLine($"ID: {emp.Id}, Name: {emp.Name}, Age: {emp.Age}, Salary: {emp.Salary:C}, " +
+                                      $"Department: {emp.Department.Name}, Hired On: {emp.EmployeeDate:yyyy-MM-dd}, " +
+                                      $"Terminated: {emp.IsTerminated}");
                 }
             }
 
-            int age;
-            while (true)
+            //TransferEmployee
+            static void TransferEmployee()
             {
-                Console.Write("Enter Age (18-65): ");
-                if (!int.TryParse(Console.ReadLine(), out age) || age < 18 || age > 65)
+                Console.Write("Enter Employee ID to Transfer: ");
+                if (!int.TryParse(Console.ReadLine(), out int id)) 
                 {
-                    Console.WriteLine("Invalid age. Please enter a number between 18 and 65.");
+                    Console.WriteLine("Invalid ID."); 
+                    return;
                 }
-                else
+          
+                Employee emp = employees.FirstOrDefault(e => e.Id == id);
+                if (emp == null) 
                 {
-                    break;
+                    Console.WriteLine("Employee not found.");
+                    return;
                 }
-            }
+                if (emp.IsTerminated)
+                {
+                    Console.WriteLine($"Employee {emp.Name} is terminated and cannot be transferred.");
+                    return;
+                }
 
-            double salary;
-            while (true)
-            {
-                Console.Write("Enter Salary (must be positive): ");
-                if (!double.TryParse(Console.ReadLine(), out salary) || salary <= 0)
-                {
-                    Console.WriteLine("Invalid salary. Please enter a positive number.");
-                }
-                else
-                {
-                    break;
-                }
-            }
+                Console.WriteLine("Choose New Department:");
+                for (int i = 0; i < departments.Count; i++)
+                    Console.WriteLine($"{i + 1}. {departments[i].Name}");
 
-            Console.WriteLine("Choose Department:");
-            for (int i = 0; i < departments.Count; i++)
-            {
-                Console.WriteLine($"{i + 1}. {departments[i].Name}");
-            }
-
-            int deptChoice;
-            while (true)
-            {
                 Console.Write("Enter Department Number: ");
-                if (!int.TryParse(Console.ReadLine(), out deptChoice) || deptChoice < 1 || deptChoice > departments.Count)
+                if (!int.TryParse(Console.ReadLine(), out int deptChoice) || deptChoice < 1 || deptChoice > departments.Count)
                 {
-                    Console.WriteLine("Invalid department selection. Try again.");
+                    Console.WriteLine("Invalid department selection.");
+                    return;
                 }
-                else
+                Department newDepartment = departments[deptChoice - 1];
+                if(emp.Department == newDepartment)
                 {
-                    break;
+                    Console.WriteLine($"Employee {emp.Name} is already in {newDepartment.Name}.");
+                    return;
                 }
+                emp.TransferDepartment(newDepartment);
+                Console.WriteLine($"Employee {emp.Name} has been transferred to {newDepartment.Name}.");
+
             }
 
-            Department selectedDepartment = departments[deptChoice - 1];
-            Employee newEmployee = new Employee(name, age, salary, selectedDepartment);
-            employees.Add(newEmployee);
-
-            Console.WriteLine($"Employee {name} added successfully.");
-        }
-
-        static void ViewEmployees()
-        {
-            if (employees.Count == 0)
+            //TerminateEmployee
+            static void TerminateEmployee()
             {
-                Console.WriteLine("No employees available.");
-                return;
+                Console.Write("Enter Employee ID to Terminate: ");
+                if (!int.TryParse(Console.ReadLine(), out int id))
+                {
+                    Console.WriteLine("Invalid ID."); 
+                    return;
+                }
+                Employee emp = employees.FirstOrDefault(e => e.Id == id);
+                if (emp == null) 
+                { 
+                    Console.WriteLine("Employee not found."); 
+                    return;
+                }
+                emp.Terminate();
             }
 
-            Console.WriteLine("\n===== Employee List =====");
-            foreach (var emp in employees)
-            {
-                Console.WriteLine($"ID: {emp.Id}, Name: {emp.Name}, Age: {emp.Age}, Salary: {emp.Salary:C}, " +
-                                  $"Department: {emp.Department.Name}, Hired On: {emp.EmployeeDate:yyyy-MM-dd}, " +
-                                  $"Terminated: {emp.IsTerminated}");
-            }
+            #endregion
         }
     }
 }
