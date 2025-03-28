@@ -49,35 +49,17 @@ namespace EMS
         }
         public void Terminate()
         {
-            if (IsTerminated)
-            {
-                
-                Console.WriteLine($"Employee {Name} is already terminated .");
-                return;
-            }
 
             IsTerminated = true;
             //Department.RemoveEmployee(this);
-            Console.WriteLine($"Employee {Name} has been terminated.");
+       
         }
         public void TransferDepartment(Department newDepartment)
         {
-            if (IsTerminated)
-            {
-                Console.WriteLine($"Employee {Name} is terminated and cannot be transferred.");
-                return;
-
-            }
-            if(Department == newDepartment)
-            {
-                Console.WriteLine($"Employee {Name} is already in {newDepartment.Name}.");
-                return;
-
-            }
             Department.RemoveEmployee(this);
             newDepartment.AddEmployee(this);
             Department = newDepartment;
-            Console.WriteLine($"Employee {Name} has been transferred to {Department.Name}.");
+           
         }
 
         public void AddPerformanceReview(PerformanceRating rating, string comments = "")
@@ -182,41 +164,5 @@ namespace EMS
 
 
 
-/*
- * 
- * 
- public int Experience => DateTime.Now.Year - EmploymentDate.Year;
-
-
-public string ExperienceRating
-        {
-            get
-            {
-                if (Experience < 2)
-                    return "Beginner";
-                else if (Experience >= 2 && Experience < 5)
-                    return "Intermediate";
-                else if (Experience >= 5 && Experience < 10)
-                    return "Advanced";
-                else
-                    return "Expert";
-            }
-        }
-
-public void Promote()
-        {
-            if (Experience >= 3 && AveragePerformanceRating >= 4.5)
-            {
-                Salary += Salary * 0.2m; 
-                JobTitle = "Senior " + JobTitle;
-                Console.WriteLine($"{Name} has been promoted to {JobTitle} with new salary {Salary}.");
-            }
-            else
-            {
-                Console.WriteLine($"{Name} is not eligible for promotion.");
-            }
-        }
- * 
- */
 
 
