@@ -8,28 +8,31 @@ namespace EMS
 {
     internal class Department
     {
+        //d : must emp a head /  demaptName 
         public string Name { get; set; }
         public Employee DepartmentHead { get; set; }
-        public List<Employee> Employees { get; private set; }
+        public List<Employee> Employees { get; set; }
 
         public Department(string name, Employee departmentHead)
         {
             Name = name;
-            DepartmentHead = departmentHead;
+            // DepartmentHead = departmentHead;
             Employees = new List<Employee>();
-            Employees.Add(departmentHead);
+            DepartmentHead = departmentHead;
+            //  Employees.Add(departmentHead);
             //if (departmentHead != null)
             //{
             //    Employees.Add(departmentHead);
             //}
         }
-
+        // fun : addDepHead (emp){}
         public void AddEmployee(Employee employee)
         {
-            if (employee == null) throw new Exception("Employee is not Found");
+            if(employee == null) throw new Exception("Employee is not Found");
             Employees.Add(employee);
             Console.WriteLine($"{employee.Name} is Added to {Name} Department");
         }
+
 
         public void RemoveEmployee(Employee employee)
         {

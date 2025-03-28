@@ -18,9 +18,9 @@ namespace EMS
 
     class PerformanceReview
     {
-        public DateTime ReviewDate { get; private set; }
-        public PerformanceRating Rating { get; private set; }
-        public string ReviewerComments { get; private set; }
+        public DateTime ReviewDate { get; set; }
+        public PerformanceRating Rating { get; set; }
+        public string ReviewerComments { get;set; }
 
         public PerformanceReview(PerformanceRating rating, string comments = "")
         {
