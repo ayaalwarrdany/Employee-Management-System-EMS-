@@ -24,23 +24,23 @@ namespace EMS
         public int Id { get;  set; }
         public string Name { get; set; }
         public int Age { get;   set; }
-        public double Salary { get; set; }
+        public decimal Salary { get; set; }
         public JobTitle Title { get; set; }
         public string DepartmentName { get; set; }
         public DateTime EmployeeDate { get; set; }
         public bool IsTerminated { get; set; }
       
-        private List<PerformanceReview> performanceReviews; 
-        public IReadOnlyList<PerformanceReview> PerformanceReviews => performanceReviews.AsReadOnly();
+        public List<PerformanceReview> performanceReviews { get; set; }
+        //public IReadOnlyList<PerformanceReview> PerformanceReviews => performanceReviews.AsReadOnly();
 
         public Employee()
         {
             performanceReviews = new List<PerformanceReview>();
         }
-        public Employee(string name, int age, double salary, string  departmentName  )
+        public Employee(string name, int age, decimal salary, string  departmentName  )
         {
             Id = nextId++;
-            Console.WriteLine(Id);
+           
             Name = name;
             Age = age;
             Salary = salary;
@@ -60,13 +60,15 @@ namespace EMS
         }
 
 
-        public void Promote(JobTitle title, double percentage = 0)
+        public void Promote(JobTitle title, decimal percentage = 0)
         {
-            //if (!IsEligibleForPromotion())
-            //{
-            //    Console.WriteLine($"{Name} is NOT eligible for promotion 🚫");
-            //    return;
-            //}
+            if (IsTerminated) throw new Exception("can't promote terminated employee !");
+
+            if (!IsEligibleForPromotion())
+            {
+                Console.WriteLine($"{Name} is NOT eligible for promotion 🚫");
+                return;
+            }
 
             //if (Title == JobTitle.Director)
             //{
@@ -75,7 +77,6 @@ namespace EMS
             //}
 
             // Title++;
-            if (IsTerminated) throw new Exception("can't promote terminated employee !");
             Title = title;
             //  double increasePercentage = JobTitleSalaryIncrease[title];
             Salary += Salary * percentage / 100;
@@ -84,8 +85,20 @@ namespace EMS
         }
 
 
-     
 
+        public override bool Equals(object obj)
+        {
+            if (obj is Employee other)
+            {
+                return this.Id == other.Id;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Id.GetHashCode();
+        }
 
         public void Terminate()
         {
@@ -102,28 +115,40 @@ namespace EMS
 
         public void AddPerformanceReview(PerformanceRating rating, string comments = "")
         {
-            int Month = EmployeeDate.Month;
-            int NMonth = DateTime.Now.Month;
-            if(NMonth!= 1 && NMonth!=4 && NMonth !=7 && NMonth !=10)
+            int currentMonth = DateTime.Now.Month;
+            if (currentMonth != 12 && currentMonth != 3 && currentMonth != 6 && currentMonth != 9)
             {
-                Console.WriteLine(" This is NOT the  a quarter !");
+                Console.WriteLine("❌ This is not a review quarter (Des, Mar, Jun, Sep). Performance review cannot be added.");
                 return;
             }
-            if (performanceReviews.Count == 3)
-            {
-                performanceReviews.Add(new PerformanceReview(rating, comments));
-                Console.WriteLine($"{Name}'s performance review added successfully! ✅");
-                
-             
-                return;
-            }
-            
-              performanceReviews.Add(new PerformanceReview(rating, comments));
-           
 
-            Console.WriteLine($"{Name}'s performance review added successfully! ✅");
+            performanceReviews.Add(new PerformanceReview(rating, comments));
+            Console.WriteLine($"✅ {Name}'s performance review added successfully! Rating: {rating}");
         }
-       
+        //public void AddPerformanceReview(PerformanceRating rating, string comments = "")
+        //{
+        //    int Month = EmployeeDate.Month;
+        //    int NMonth = DateTime.Now.Month;
+        //    if(NMonth!= 1 && NMonth!=4 && NMonth !=7 && NMonth !=10)
+        //    {
+        //        Console.WriteLine(" This is NOT the  a quarter !");
+        //        return;
+        //    }
+        //    if (performanceReviews.Count == 3)
+        //    {
+        //        performanceReviews.Add(new PerformanceReview(rating, comments));
+        //        Console.WriteLine($"{Name}'s performance review added successfully! ✅");
+
+
+        //        return;
+        //    }
+
+        //      performanceReviews.Add(new PerformanceReview(rating, comments));
+
+
+        //    Console.WriteLine($"{Name}'s performance review added successfully! ✅");
+        //}
+
         public bool IsEligibleForPromotion()
         {
             if (performanceReviews.Count < 4)

@@ -31,20 +31,24 @@ namespace EMS
                 {
                     switch (choice)
                     {
-                        case "1": AddEmployee(); break;
-                        case "2": AddDepartment(); break;
-                        //case "3": PromoteEmployee(); break;
-                        //case "4": TransferEmployee(); break;
-                        //case "5": TerminateEmployee(); break;
-                        //case "6": AddPerformanceReview(); break;
+                        case "1": AddDepartment(); break;
+                        case "2": AddEmployee(); break;
+                        case "3": AddPerformanceReview(); break;
+                        case "4": PromoteEmployee(); break;
+                        case "5": TransferEmployee(); break;
+                        case "6": TerminateEmployee(); break;
+                      
                         case "7": GenerateReports(); break;
                         case "8":
-                            running = false;
+                          
                             DisplayFooter();
                             company.SaveToFile(filePath);
+
+                            break;
+                        case "0":
                             Console.WriteLine("\nExiting... Press any key to close.");
                             Console.ReadKey();
-                            break;
+                            running = false; break;
                         default: DisplayError("Invalid option."); break;
                     }
                 }
@@ -52,7 +56,7 @@ namespace EMS
                 {
                     DisplayError($"Error: {ex.Message}");
                 }
-                if (choice != "8") WaitForUser();
+                if (choice != "0") WaitForUser();
             }
         }
 
@@ -66,14 +70,16 @@ namespace EMS
 
             Console.WriteLine("\nPlease select an option:");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("  [1] Add Employee");
-            Console.WriteLine("  [2] Add Department");
-            Console.WriteLine("  [3] Promote Employee");
-            Console.WriteLine("  [4] Transfer Employee");
-            Console.WriteLine("  [5] Terminate Employee");
-            Console.WriteLine("  [6] Add Performance Review");
+            Console.WriteLine("  [1] Add Department");
+            Console.WriteLine("  [2] Add Employee");
+            Console.WriteLine("  [3] Add Performance Employee");
+            Console.WriteLine("  [4] Promote Employee");
+            Console.WriteLine("  [5] Transfer Employee");
+            Console.WriteLine("  [6] Terminate Employee");
             Console.WriteLine("  [7] Generate Reports");
-            Console.WriteLine("  [8] Exit");
+            Console.WriteLine("  [8] Save");
+            Console.WriteLine("  [0] Exit");
+
             Console.ResetColor();
         }
 
@@ -97,7 +103,7 @@ namespace EMS
             Department selectedDept = SelectDepartment();
             if (selectedDept == null) return;
 
-            Employee newEmployee = new Employee(name, age, (double)salary, selectedDept.Name);
+            Employee newEmployee = new Employee(name, age, (decimal)salary, selectedDept.Name);
             company.AddEmployee(newEmployee);
             DisplaySuccess($"Employee {name} added successfully to {selectedDept.Name}.");
         }
@@ -107,41 +113,100 @@ namespace EMS
             DisplayHeader("Add Department");
 
             string deptName = GetValidName("Enter Department Name (letters only): ");
-            DisplaySubHeader("Department Head Information");
-            string headName = GetValidName("Enter Head's Name (letters only): ");
-            int headAge = GetValidInt("Enter Head's Age (18-65): ", 18, 65);
-            decimal headSalary = GetValidDecimal("Enter Head's Salary (must be positive): ", 0, decimal.MaxValue);
-           
-            
-            Console.WriteLine("::::::::::::::");
-            
-            
-            Employee newHead = new Employee(headName, headAge, (double)headSalary, deptName);
-            
-            company.AddEmployee(newHead);
 
-            company.AddDepartment(new Department(deptName, newHead));
+            if (!company.departments.Any(d => d.Name == deptName))
+            {
+                DisplaySubHeader("Department Head Information");
+                string headName = GetValidName("Enter Head's Name (letters only): ");
+                int headAge = GetValidInt("Enter Head's Age (18-65): ", 18, 65);
+                decimal headSalary = GetValidDecimal("Enter Head's Salary (must be positive): ", 0, decimal.MaxValue);
 
-            DisplaySuccess($"Department {deptName} added successfully with {headName} as head.");
+
+
+                Employee newHead = new Employee(headName, headAge, (decimal)headSalary, deptName);
+
+
+                company.AddDepartment(new Department(deptName, newHead));
+
+                company.AddEmployee(newHead);
+
+
+                DisplaySuccess($"Department {deptName} added successfully with {headName} as head.");
+
+            }
+
+            else
+            {
+                DisplayWarning($"The Department Name  {deptName} is Already Added ");
+                
+
+            }
+
         }
+
+        //static void PromoteEmployee()
+        //{
+        //    Console.Clear();
+        //    DisplayHeader("Promote Employee");
+        //    company.GenerateDepartmentReport();
+        //    Employee emp = SelectEmployee("Enter Employee ID to promote: ");
+        //    if (emp == null) return;
+
+        //    string newTitle = GetValidName("Enter New Title: ");
+        //    decimal increase = GetValidDecimal("Enter Salary Increase (must be positive): ", 0, decimal.MaxValue);
+
+        //    // Company.PromoteEmployee(emp.Id, newTitle, increase);
+        //    DisplaySuccess($"Employee {emp.Name} promoted successfully.");
+        //}
 
         static void PromoteEmployee()
         {
             Console.Clear();
             DisplayHeader("Promote Employee");
-
+            company.GenerateDepartmentReport();
             Employee emp = SelectEmployee("Enter Employee ID to promote: ");
             if (emp == null) return;
 
-            string newTitle = GetValidName("Enter New Title: ");
-            decimal increase = GetValidDecimal("Enter Salary Increase (must be positive): ", 0, decimal.MaxValue);
+            JobTitle newTitle = SelectJobTitle();
+            decimal increase = GetValidDecimal("Enter Salary Increase Percentage: ", 0, decimal.MaxValue);
 
-            // Company.PromoteEmployee(emp.Id, newTitle, increase);
-            DisplaySuccess($"Employee {emp.Name} promoted successfully.");
+            try
+            {
+                company.PromoteEmployee(emp.Id, newTitle, increase);
+            }
+            catch (Exception ex)
+            {
+                DisplayError($"Promotion failed: {ex.Message}");
+            }
+            WaitForUser();
         }
+        //static void PromoteEmployee()
+        //{
+        //    Console.Clear();
+        //    DisplayHeader("Promote Employee");
+        //    company.GenerateDepartmentReport();
+
+        //    Employee emp = SelectEmployee("Enter Employee ID to promote: ");
+        //    if (emp == null) return;
+
+        //    JobTitle newTitle = SelectJobTitle();
+        //    decimal increasePercentage = GetValidDecimal("Enter Salary Increase Percentage: ", 0, decimal.MaxValue);
+
+        //    try
+        //    {
+        //        company.PromoteEmployee(emp.Id, newTitle, (decimal)increasePercentage);
+        //        DisplaySuccess($"Employee {emp.Name} promoted to {newTitle} with a salary increase of {increasePercentage}%.");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        DisplayError($"Promotion failed: {ex.Message}");
+        //    }
+        //}
+
 
         static void TransferEmployee()
         {
+
             Console.Clear();
             DisplayHeader("Transfer Employee");
             company.GenerateDepartmentReport();
@@ -153,38 +218,108 @@ namespace EMS
                 DisplayWarning($"Employee {emp.Name} is terminated and cannot be transferred.");
                 return;
             }
+            Department oldDepartment = company.departments.FirstOrDefault(dept => dept.Name == emp.DepartmentName);
+            if(emp.Id == oldDepartment.DepartmentHead.Id)
+            {
+                DisplayWarning($"Employee {emp.Name} is The Department Head  and cannot be transferred.");
 
-            Department newDept = SelectDepartment();
+                return;
+            }
+
+
+
+
+
+                Department newDept = SelectDepartment();
             if (newDept == null) return;
+            if (newDept.Name == emp.DepartmentName)
+            {
+                DisplayError($"Employee {emp.Name} is already in {newDept.Name}.");
+            }
+          
+           
 
-            company.TransferEmployeeToDepartment(newDept.Name, emp.Id);
-            DisplaySuccess($"Employee {emp.Name} transferred successfully.");
+            
+            else
+            {
+                company.TransferEmployeeToDepartment(newDept.Name, emp.Id);
+                DisplaySuccess($"Employee {emp.Name} transferred successfully.");
+            }
         }
 
         static void TerminateEmployee()
+
         {
+
             Console.Clear();
+
             DisplayHeader("Terminate Employee");
 
+            company.GenerateDepartmentReport();
+
             Employee emp = SelectEmployee("Enter Employee ID to terminate: ");
+
             if (emp == null) return;
 
-            emp.Terminate();
-            DisplaySuccess($"Employee {emp.Name} terminated successfully.");
+            if (emp.IsTerminated)
+
+            {
+
+                DisplaySuccess($"Employee {emp.Name} has already been Terminated!");
+
+            }
+
+            else
+
+            {
+
+                emp.Terminate();
+
+                DisplaySuccess($"Employee {emp.Name} terminated successfully.");
+
+            }
+
         }
+
 
         static void AddPerformanceReview()
         {
             Console.Clear();
             DisplayHeader("Add Performance Review");
+            company.GenerateDepartmentReport();
 
             Employee emp = SelectEmployee("Enter Employee ID for review: ");
             if (emp == null) return;
 
-            double rating = GetValidDouble("Enter Rating (1-5): ", 1, 5);
-            // emp.AddPerformanceReview(new PerformanceReview(DateTime.Now, rating));
-            DisplaySuccess("Performance review added successfully.");
+            DisplaySubHeader("Performance Rating");
+            Console.WriteLine("  [1] Poor");
+            Console.WriteLine("  [2] Fair");
+            Console.WriteLine("  [3] Good");
+            Console.WriteLine("  [4] Very Good");
+            Console.WriteLine("  [5] Excellent");
+            int ratingChoice = GetValidInt("Select Rating Number: ", 1, 5);
+            PerformanceRating rating = (PerformanceRating)ratingChoice;
+
+            Console.Write("Enter Comments (optional): ");
+            string comments = Console.ReadLine();
+
+            emp.AddPerformanceReview(rating, comments);
+            WaitForUser();
         }
+        //static void AddPerformanceReview()
+        //{
+        //    Console.Clear();
+        //    DisplayHeader("Add Performance Review");
+
+        //    company.GenerateDepartmentReport();
+
+        //    Employee emp = SelectEmployee("Enter Employee ID for review: ");
+        //    if (emp == null) return;
+
+        //    double rating = GetValidDouble("Enter Rating (1-5): ", 1, 5);
+        //    // emp.AddPerformanceReview(new PerformanceReview(DateTime.Now, rating));
+        //    DisplaySuccess("Performance review added successfully.");
+        //}
 
         static void GenerateReports()
         {
@@ -349,11 +484,66 @@ namespace EMS
         //        company.AddDepartment(new Department("HR", emp2));
         //    }
         //}
+
+        static JobTitle SelectJobTitle()
+        {
+            // Convert enum to list of strings
+            var jobTitles = Enum.GetValues(typeof(JobTitle)).Cast<JobTitle>().ToList();
+
+            // Display options
+            DisplaySubHeader("Available Job Titles");
+            for (int i = 0; i < jobTitles.Count; i++)
+            {
+                Console.WriteLine($"  [{i + 1}] {jobTitles[i]}");
+            }
+
+            // Get user choice
+            int choice = GetValidInt("Select Job Title Number: ", 1, jobTitles.Count);
+
+            // Convert choice to enum
+            return jobTitles[choice - 1];
+        }
+
+
     }
 }
 
 
 /*
+ * 
+ 
+  Console.Clear();
+     DisplayHeader("Transfer Employee");
+     company.GenerateDepartmentReport();
+ 
+     Employee emp = SelectEmployee("Enter Employee ID to transfer: ");
+     if (emp == null) return;
+     if (emp.IsTerminated)
+     {
+         DisplayWarning($"Employee {emp.Name} is terminated and cannot be transferred.");
+         return;
+     }
+ 
+     Department newDept = SelectDepartment();
+     if (newDept == null) return;
+     if (newDept.Name == emp.DepartmentName)
+     {
+         DisplayError($"Employee {emp.Name} is already in {newDept.Name}.");
+     }
+     else
+     {
+         company.TransferEmployeeToDepartment(newDept.Name, emp.Id);
+         DisplaySuccess($"Employee {emp.Name} transferred successfully.");
+     }
+}
+
+
+
+
+
+
+ * 
+ * 
  
 using Employee_Management_System;
 using EMS;

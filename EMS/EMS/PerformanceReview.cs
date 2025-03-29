@@ -25,7 +25,7 @@ namespace EMS
         public PerformanceReview(PerformanceRating rating, string comments = "")
         {
            
-             Rating = rating;
+            Rating = rating;
             ReviewerComments = comments;
             ReviewDate = DateTime.Now;
         }
