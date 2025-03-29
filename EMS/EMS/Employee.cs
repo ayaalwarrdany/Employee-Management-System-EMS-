@@ -15,6 +15,7 @@ namespace EMS
         Senior = 3,
         Manager = 4,
         Director = 5
+        
     }
     
     internal class Employee
@@ -37,7 +38,7 @@ namespace EMS
         {
             performanceReviews = new List<PerformanceReview>();
         }
-        public Employee(string name, int age, decimal salary, string  departmentName  )
+        public Employee(string name, int age,JobTitle jobTitle, decimal salary, string  departmentName  )
         {
             Id = nextId++;
            
@@ -47,7 +48,7 @@ namespace EMS
             DepartmentName = departmentName;
             EmployeeDate = DateTime.Now;
             performanceReviews = new List<PerformanceReview>();
-            Title = JobTitle.Fresh;
+            Title = jobTitle;
             // PerformanceRating = 0;
             IsTerminated = false;
  
@@ -62,27 +63,11 @@ namespace EMS
 
         public void Promote(JobTitle title, decimal percentage = 0)
         {
-            if (IsTerminated) throw new Exception("can't promote terminated employee !");
-
-            if (!IsEligibleForPromotion())
-            {
-                Console.WriteLine($"{Name} is NOT eligible for promotion 🚫");
-                return;
-            }
-
-            //if (Title == JobTitle.Director)
-            //{
-            //    Console.WriteLine($"❌ {Name} is already at the highest level ({Title}). No further promotions possible.");
-            //    return;
-            //}
-
-            // Title++;
-            Title = title;
-            //  double increasePercentage = JobTitleSalaryIncrease[title];
-            Salary += Salary * percentage / 100;
-
-     //       Console.WriteLine($"🎉 {Name} has been promoted to {Title} with a new salary of {Salary:C}! 🚀");
-        }
+           
+            
+             Title = title;
+             Salary += Salary * percentage / 100;
+         }
 
 
 
@@ -102,6 +87,7 @@ namespace EMS
 
         public void Terminate()
         {
+            
 
             IsTerminated = true;
             //Department.RemoveEmployee(this);
@@ -115,54 +101,40 @@ namespace EMS
 
         public void AddPerformanceReview(PerformanceRating rating, string comments = "")
         {
-            int currentMonth = DateTime.Now.Month;
-            if (currentMonth != 12 && currentMonth != 3 && currentMonth != 6 && currentMonth != 9)
+
+            PerformanceReview oldPer = performanceReviews.FirstOrDefault(p => p.ReviewDate.Month ==DateTime.Now.Month);
+
+            if (oldPer == null)
             {
-                Console.WriteLine("❌ This is not a review quarter (Des, Mar, Jun, Sep). Performance review cannot be added.");
-                return;
+                performanceReviews.Add(new PerformanceReview(rating, comments));
+
+                string message = $"✅ {Name}'s performance review added successfully! Rating: {rating}";
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"\n✓ {message}");
+                Console.ResetColor();
+
             }
+            else
+            {
+                oldPer.Rating = rating;
+                oldPer.ReviewerComments = comments;
+                string message = $"✅ {Name}'s performance review Edited successfully! Rating: {rating}";
 
-            performanceReviews.Add(new PerformanceReview(rating, comments));
-            Console.WriteLine($"✅ {Name}'s performance review added successfully! Rating: {rating}");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"\n✓ {message}");
+                Console.ResetColor();
+
+            }
         }
-        //public void AddPerformanceReview(PerformanceRating rating, string comments = "")
-        //{
-        //    int Month = EmployeeDate.Month;
-        //    int NMonth = DateTime.Now.Month;
-        //    if(NMonth!= 1 && NMonth!=4 && NMonth !=7 && NMonth !=10)
-        //    {
-        //        Console.WriteLine(" This is NOT the  a quarter !");
-        //        return;
-        //    }
-        //    if (performanceReviews.Count == 3)
-        //    {
-        //        performanceReviews.Add(new PerformanceReview(rating, comments));
-        //        Console.WriteLine($"{Name}'s performance review added successfully! ✅");
-
-
-        //        return;
-        //    }
-
-        //      performanceReviews.Add(new PerformanceReview(rating, comments));
-
-
-        //    Console.WriteLine($"{Name}'s performance review added successfully! ✅");
-        //}
-
+     
         public bool IsEligibleForPromotion()
         {
             if (performanceReviews.Count < 4)
                 return false;
 
-            //int highRatings = 0;
-            //foreach (var review in performanceReviews)
-            //{
-            //    if (review.Rating == PerformanceRating.Excellent) highRatings++;
-
-            //}
-
-            //return highRatings >= 3;
-            return GetAveragePerformance()>=4.5;
+            
+            return GetAveragePerformance()>=4;
         }
 
 

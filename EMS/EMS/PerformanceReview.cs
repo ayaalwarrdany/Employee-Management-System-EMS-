@@ -10,10 +10,11 @@ namespace EMS
     public enum PerformanceRating
     {
         Poor = 1,
-        Average = 2,
+        Fair = 2,
         Good = 3,
-        Excellent = 4,
-        Outstanding = 5
+        VeryGood=4,
+        Excellent =5
+        
     }
 
     class PerformanceReview
