@@ -1,30 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\New folder\\Employee-Management-System-EMS-\\EMS\\",
+  "WorkspaceRootPath": "C:\\Users\\melkb\\source\\repos\\Employee-Management-System-EMS-\\EMS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\elmanahry\\OneDrive\\Desktop\\New folder\\Employee-Management-System-EMS-\\EMS\\EMS\\bin\\Debug\\net8.0\\companyData.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\melkb\\source\\repos\\Employee-Management-System-EMS-\\EMS\\EMS\\bin\\Debug\\net8.0\\companyData.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EMS\\bin\\Debug\\net8.0\\companyData.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F9D528BD-9A2E-465F-814C-41B46DB0CAD5}|EMS\\EMS.csproj|c:\\users\\elmanahry\\onedrive\\desktop\\new folder\\employee-management-system-ems-\\ems\\ems\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F9D528BD-9A2E-465F-814C-41B46DB0CAD5}|EMS\\EMS.csproj|solutionrelative:ems\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F9D528BD-9A2E-465F-814C-41B46DB0CAD5}|EMS\\EMS.csproj|c:\\users\\elmanahry\\onedrive\\desktop\\new folder\\employee-management-system-ems-\\ems\\ems\\performancereview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F9D528BD-9A2E-465F-814C-41B46DB0CAD5}|EMS\\EMS.csproj|solutionrelative:ems\\performancereview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F9D528BD-9A2E-465F-814C-41B46DB0CAD5}|EMS\\EMS.csproj|c:\\users\\elmanahry\\onedrive\\desktop\\new folder\\employee-management-system-ems-\\ems\\ems\\company.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F9D528BD-9A2E-465F-814C-41B46DB0CAD5}|EMS\\EMS.csproj|solutionrelative:ems\\company.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F9D528BD-9A2E-465F-814C-41B46DB0CAD5}|EMS\\EMS.csproj|c:\\users\\elmanahry\\onedrive\\desktop\\new folder\\employee-management-system-ems-\\ems\\ems\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F9D528BD-9A2E-465F-814C-41B46DB0CAD5}|EMS\\EMS.csproj|c:\\users\\melkb\\source\\repos\\employee-management-system-ems-\\ems\\ems\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F9D528BD-9A2E-465F-814C-41B46DB0CAD5}|EMS\\EMS.csproj|solutionrelative:ems\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F9D528BD-9A2E-465F-814C-41B46DB0CAD5}|EMS\\EMS.csproj|c:\\users\\elmanahry\\onedrive\\desktop\\new folder\\employee-management-system-ems-\\ems\\ems\\department.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F9D528BD-9A2E-465F-814C-41B46DB0CAD5}|EMS\\EMS.csproj|c:\\users\\melkb\\source\\repos\\employee-management-system-ems-\\ems\\ems\\company.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F9D528BD-9A2E-465F-814C-41B46DB0CAD5}|EMS\\EMS.csproj|solutionrelative:ems\\company.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F9D528BD-9A2E-465F-814C-41B46DB0CAD5}|EMS\\EMS.csproj|c:\\users\\melkb\\source\\repos\\employee-management-system-ems-\\ems\\ems\\department.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F9D528BD-9A2E-465F-814C-41B46DB0CAD5}|EMS\\EMS.csproj|solutionrelative:ems\\department.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F9D528BD-9A2E-465F-814C-41B46DB0CAD5}|EMS\\EMS.csproj|c:\\users\\melkb\\source\\repos\\employee-management-system-ems-\\ems\\ems\\performancereview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F9D528BD-9A2E-465F-814C-41B46DB0CAD5}|EMS\\EMS.csproj|solutionrelative:ems\\performancereview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F9D528BD-9A2E-465F-814C-41B46DB0CAD5}|EMS\\EMS.csproj|c:\\users\\melkb\\source\\repos\\employee-management-system-ems-\\ems\\ems\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F9D528BD-9A2E-465F-814C-41B46DB0CAD5}|EMS\\EMS.csproj|solutionrelative:ems\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,82 +34,82 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "companyData.json",
-              "DocumentMoniker": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\New folder\\Employee-Management-System-EMS-\\EMS\\EMS\\bin\\Debug\\net8.0\\companyData.json",
-              "RelativeDocumentMoniker": "EMS\\bin\\Debug\\net8.0\\companyData.json",
-              "ToolTip": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\New folder\\Employee-Management-System-EMS-\\EMS\\EMS\\bin\\Debug\\net8.0\\companyData.json",
-              "RelativeToolTip": "EMS\\bin\\Debug\\net8.0\\companyData.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-28T18:13:56.522Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "PerformanceReview.cs",
-              "DocumentMoniker": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\New folder\\Employee-Management-System-EMS-\\EMS\\EMS\\PerformanceReview.cs",
-              "RelativeDocumentMoniker": "EMS\\PerformanceReview.cs",
-              "ToolTip": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\New folder\\Employee-Management-System-EMS-\\EMS\\EMS\\PerformanceReview.cs",
-              "RelativeToolTip": "EMS\\PerformanceReview.cs",
-              "ViewState": "AgIAABQAAABwzMzMzMwwwBIAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-26T21:13:51.745Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Employee.cs",
-              "DocumentMoniker": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\New folder\\Employee-Management-System-EMS-\\EMS\\EMS\\Employee.cs",
-              "RelativeDocumentMoniker": "EMS\\Employee.cs",
-              "ToolTip": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\New folder\\Employee-Management-System-EMS-\\EMS\\EMS\\Employee.cs*",
-              "RelativeToolTip": "EMS\\Employee.cs*",
-              "ViewState": "AgIAABsAAABA/v////85wCAAAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T01:03:47.131Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Department.cs",
-              "DocumentMoniker": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\New folder\\Employee-Management-System-EMS-\\EMS\\EMS\\Department.cs",
-              "RelativeDocumentMoniker": "EMS\\Department.cs",
-              "ToolTip": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\New folder\\Employee-Management-System-EMS-\\EMS\\EMS\\Department.cs",
-              "RelativeToolTip": "EMS\\Department.cs",
-              "ViewState": "AgIAAA8AAADAZWZmZmY6wBMAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-29T01:50:33.978Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "Company.cs",
-              "DocumentMoniker": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\New folder\\Employee-Management-System-EMS-\\EMS\\EMS\\Company.cs",
+              "DocumentMoniker": "C:\\Users\\melkb\\source\\repos\\Employee-Management-System-EMS-\\EMS\\EMS\\Company.cs",
               "RelativeDocumentMoniker": "EMS\\Company.cs",
-              "ToolTip": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\New folder\\Employee-Management-System-EMS-\\EMS\\EMS\\Company.cs",
+              "ToolTip": "C:\\Users\\melkb\\source\\repos\\Employee-Management-System-EMS-\\EMS\\EMS\\Company.cs",
               "RelativeToolTip": "EMS\\Company.cs",
-              "ViewState": "AgIAAAcAAAAA1czMzMwswBEAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-26T21:13:37.889Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "companyData.json",
+              "DocumentMoniker": "C:\\Users\\melkb\\source\\repos\\Employee-Management-System-EMS-\\EMS\\EMS\\bin\\Debug\\net8.0\\companyData.json",
+              "RelativeDocumentMoniker": "EMS\\bin\\Debug\\net8.0\\companyData.json",
+              "ToolTip": "C:\\Users\\melkb\\source\\repos\\Employee-Management-System-EMS-\\EMS\\EMS\\bin\\Debug\\net8.0\\companyData.json",
+              "RelativeToolTip": "EMS\\bin\\Debug\\net8.0\\companyData.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGQAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-29T09:51:07.923Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "PerformanceReview.cs",
+              "DocumentMoniker": "C:\\Users\\melkb\\source\\repos\\Employee-Management-System-EMS-\\EMS\\EMS\\PerformanceReview.cs",
+              "RelativeDocumentMoniker": "EMS\\PerformanceReview.cs",
+              "ToolTip": "C:\\Users\\melkb\\source\\repos\\Employee-Management-System-EMS-\\EMS\\EMS\\PerformanceReview.cs",
+              "RelativeToolTip": "EMS\\PerformanceReview.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T21:13:51.745Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Employee.cs",
+              "DocumentMoniker": "C:\\Users\\melkb\\source\\repos\\Employee-Management-System-EMS-\\EMS\\EMS\\Employee.cs",
+              "RelativeDocumentMoniker": "EMS\\Employee.cs",
+              "ToolTip": "C:\\Users\\melkb\\source\\repos\\Employee-Management-System-EMS-\\EMS\\EMS\\Employee.cs",
+              "RelativeToolTip": "EMS\\Employee.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAG8AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-27T01:03:47.131Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Department.cs",
+              "DocumentMoniker": "C:\\Users\\melkb\\source\\repos\\Employee-Management-System-EMS-\\EMS\\EMS\\Department.cs",
+              "RelativeDocumentMoniker": "EMS\\Department.cs",
+              "ToolTip": "C:\\Users\\melkb\\source\\repos\\Employee-Management-System-EMS-\\EMS\\EMS\\Department.cs",
+              "RelativeToolTip": "EMS\\Department.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-29T01:50:33.978Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\New folder\\Employee-Management-System-EMS-\\EMS\\EMS\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\melkb\\source\\repos\\Employee-Management-System-EMS-\\EMS\\EMS\\Program.cs",
               "RelativeDocumentMoniker": "EMS\\Program.cs",
-              "ToolTip": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\New folder\\Employee-Management-System-EMS-\\EMS\\EMS\\Program.cs",
+              "ToolTip": "C:\\Users\\melkb\\source\\repos\\Employee-Management-System-EMS-\\EMS\\EMS\\Program.cs",
               "RelativeToolTip": "EMS\\Program.cs",
-              "ViewState": "AgIAAB4AAAAgzMzMzMwswCwAAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-25T18:55:44.582Z",
               "EditorCaption": ""

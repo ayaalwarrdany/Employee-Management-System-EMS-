@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Transactions;
 using System.Xml.Linq;
 
-namespace Employee_Management_System
+namespace EMS
 {
     internal class Company
     {
@@ -41,23 +41,64 @@ namespace Employee_Management_System
         }
 
 
-
         public static Company LoadFromFile(string filePath)
         {
+            // Console.WriteLine($"Debug: Attempting to load file from {filePath}");
             try
             {
                 if (File.Exists(filePath))
                 {
+                    // Console.WriteLine("Debug: File exists, reading content...");
                     string json = File.ReadAllText(filePath);
-                    return JsonSerializer.Deserialize<Company>(json) ?? new Company();
+                    // Console.WriteLine("Debug: File read successfully, deserializing...");
+
+                    var options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true,
+                        IgnoreNullValues = true,
+                        WriteIndented = true
+                    };
+                    Company company = JsonSerializer.Deserialize<Company>(json, options) ?? new Company();
+
+                    // Console.WriteLine("Debug: Loaded employees from JSON:");
+                    // foreach (var emp in company.employees)
+                    // {
+                    //     Console.WriteLine($"Employee: {emp.Name}, ID: {emp.Id}, Reviews: {emp.performanceReviews.Count}");
+                    // }
+
+                    // Console.WriteLine("Debug: Loaded departments from JSON:");
+                    // foreach (var dept in company.departments)
+                    // {
+                    //     Console.WriteLine($"Department: {dept.Name}, Employees: {dept.Employees.Count}");
+                    // }
+
+                    foreach (var dept in company.departments)
+                    {
+                        dept.Employees.Clear();
+                        foreach (var emp in company.employees.Where(e => e.DepartmentName == dept.Name))
+                        {
+                            dept.AddEmployee(emp);
+                        }
+                        var head = company.employees.FirstOrDefault(e => e.Id == dept.DepartmentHead.Id);
+                        if (head != null) dept.DepartmentHead = head;
+                    }
+
+                    // Console.WriteLine("Debug: Data synced successfully.");
+                    return company;
+                }
+                else
+                {
+                    // Console.WriteLine("Debug: File does not exist.");
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error loading data: {ex.Message}");
             }
-            return new Company(); // Return empty company if file fails
+            return new Company();
         }
+
+
 
         public void AddEmployee(Employee employee)
         {
@@ -71,7 +112,7 @@ namespace Employee_Management_System
             var dept = departments.FirstOrDefault(d => d.Name == employee.DepartmentName);
             if (dept != null)
             {
-                dept.AddEmployee(employee); // Ensure this line is executed
+                dept.AddEmployee(employee); // Add the same employee instance to department
             }
             else
             {

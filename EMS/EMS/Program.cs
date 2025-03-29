@@ -1,5 +1,4 @@
-﻿using Employee_Management_System;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -15,6 +14,11 @@ namespace EMS
         {
             string filePath = "companyData.json";
             company = Company.LoadFromFile(filePath);
+           
+            //Ensure that all json files
+            //Console.WriteLine($"Debug: Company loaded - Employees: {company.employees.Count}, Departments: {company.departments.Count}");
+            //Console.WriteLine("Press any key to continue to the menu...");
+            //Console.ReadKey(); // Wait for user input before proceeding
             //InitializeSampleData();
 
             bool running = true;
