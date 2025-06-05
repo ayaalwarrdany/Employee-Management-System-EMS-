@@ -33,7 +33,6 @@ namespace EMS
 
             if (employee == null) throw new ArgumentNullException(nameof(employee), "Employee cannot be null");
 
-            /*bool isRemoved =*/
             Employees.Remove(employee);
 
            
